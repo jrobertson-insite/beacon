@@ -1,0 +1,5 @@
+this is currently published to a nuget package that is owned by Bela VanderVoort, we should probably get that changed
+bump up version in Beacon/Beacon.csproj
+dotnet pack -c release -o ./nupkg
+upload to nuget
+Or really, just automate this.
