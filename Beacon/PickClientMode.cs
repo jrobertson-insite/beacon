@@ -8,10 +8,16 @@ namespace Beacon
     {
         protected override void PrintHeader()
         {
-            Print(ApplicationState.SetupClientState.GetHeader() + " - Select Client");
+            Print(this.GetHeader());
+            
             base.PrintHeader();
         }
 
+        protected virtual string GetHeader()
+        {
+            return ApplicationState.SetupClientState.GetHeader() + " - Select Client";
+        }
+        
         protected override int GetRows()
         {
             return base.GetRows() - 1;

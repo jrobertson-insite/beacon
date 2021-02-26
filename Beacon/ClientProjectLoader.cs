@@ -43,6 +43,7 @@ namespace Beacon
         {
             var client = new TeamCityClient("ISHQ-BUILDSERVER.insitesofthosting.com:8111");
             // TODO have user enter their info? grab from stonemason instead through an API? 
+            
 
             var clientProjects = new Dictionary<string, ClientProject>();
 

@@ -16,29 +16,27 @@ namespace Beacon
             if (key.Key == ConsoleKey.Enter)
             {
                 SystemHelper.ExecuteApplication("git", $"-C {ApplicationState.CommerceRepo} reset --hard");
-                Console.WriteLine("Cleaning up any leftover empty directories.");
-                foreach (var directory in Directory.GetDirectories(Path.Combine(ApplicationState.CommerceRepo, @"FrontEnd\Modules\blueprints")))
+
+                void CleanStuff(string path)
                 {
-                    var directoryInfo = new DirectoryInfo(directory);
-                    if (directoryInfo.Name.EqualsIgnoreCase("example") || directoryInfo.Name.EqualsIgnoreCase("buildBreaker"))
+                    foreach (var directory in Directory.GetDirectories(Path.Combine(ApplicationState.CommerceRepo, path)))
                     {
-                        continue;
+                        var directoryInfo = new DirectoryInfo(directory);
+                        if (directoryInfo.Name.EqualsIgnoreCase("example") 
+                            || directoryInfo.Name.EqualsIgnoreCase("buildBreaker")
+                            || directoryInfo.Name.EqualsIgnoreCase("gsd"))
+                        {
+                            continue;
+                        }
+
+                        directoryInfo.Delete(true);
                     }
-
-                    directoryInfo.Delete(true);
-                }
-
-                foreach (var directory in Directory.GetDirectories(Path.Combine(ApplicationState.CommerceRepo, @"FrontEnd\Modules\blueprints-shell")))
-                {
-                    var directoryInfo = new DirectoryInfo(directory);
-                    if (directoryInfo.Name.EqualsIgnoreCase("example") || directoryInfo.Name.EqualsIgnoreCase("buildBreaker"))
-                    {
-                        continue;
-                    }
-
-                    directoryInfo.Delete(true);
                 }
                 
+                // TODO show git status before doing this?
+                Console.WriteLine("Cleaning up any leftover empty directories.");
+                CleanStuff(@"FrontEnd\Modules\blueprints");
+                CleanStuff(@"FrontEnd\Modules\blueprints-shell");
                 Console.WriteLine("Done. Press any key.");
                 Console.ReadKey(true);
                 return new MainMenuMode();

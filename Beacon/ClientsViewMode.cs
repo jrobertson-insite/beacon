@@ -139,6 +139,7 @@ namespace Beacon
                 ClientProject clientProject;
                 if (HighlightedRow == 0)
                 {
+                    StartRow -= 1;
                     Console.MoveBufferArea(0, top, 120, GetRows() - 1, 0, top + 1);
                     Console.SetCursorPosition(0, top);
                     clientProject = clientProjects.Skip(StartRow).FirstOrDefault();
@@ -159,10 +160,11 @@ namespace Beacon
             else
             {
                 var moveRow = true;
+                var rows = GetRows();
                 if (HighlightedRow == GetRows() - 1)
                 {
                     StartRow += 1;
-                    Console.MoveBufferArea(0, top - 1, 120, GetRows() - 1, 0, top - 2);
+                    Console.MoveBufferArea(0, top + 1, 120, GetRows() - 1, 0, top);
                     Console.SetCursorPosition(0, originalTop);
                     moveRow = false;
                 }

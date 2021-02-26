@@ -6,12 +6,11 @@ namespace Beacon
 {
     public class CloneClientMode : PickClientMode
     {
-        protected override void PrintHeader()
+        protected override string GetHeader()
         {
-            Print("Clone Client Repo");
-            base.PrintHeader();
+            return "Clone Client Repository";
         }
-        
+
         protected override int GetRows()
         {
             return base.GetRows() - 1;
@@ -38,6 +37,11 @@ namespace Beacon
             Print("Press any key to continue.");
             Console.ReadKey(true);
             return new MainMenuMode();
+        }
+
+        public override ConsoleMode ReplaceStateIfNeeded()
+        {
+            return this;
         }
     }
 }
