@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TeamCitySharp;
@@ -11,7 +11,8 @@ namespace Beacon.Services
 {
     public class ClientProjectLoader
     {
-        private const string fileName = "clientProjects-1.0.json";
+        private static string fileName => Path.Combine(Environment.GetEnvironmentVariable(
+            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "LocalAppData" : "Home"), "Beacon", "clientProjects-1.0.json");
 
         public static IDictionary<string, ClientProject> GetClientProjects()
         {
