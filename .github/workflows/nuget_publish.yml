@@ -6,7 +6,6 @@ jobs:
   publish-nuget:
     runs-on: ubuntu-latest
     name: publish nuget
-    needs: test
     steps:
       -  
         uses: actions/checkout@v2
