@@ -3,7 +3,7 @@ using System.IO;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class PickVersionMode : SetupClientConsoleMode
     {

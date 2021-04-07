@@ -1,7 +1,7 @@
 using System;
 using Alba.CsConsoleFormat;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public abstract class ConsoleMode
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class PickEnvironmentMode : ConsoleMode
     {

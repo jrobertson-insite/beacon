@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class PickBlueprintNode : ConsoleMode
     {
@@ -13,7 +13,7 @@ namespace Beacon
         {
             if (!ApplicationState.SetupClientState.ClientProject.HasSpire)
             {
-                return new EndNode();
+                return new EndNodeMode();
             }
 
             var key = Console.ReadKey(true).KeyChar;
@@ -22,7 +22,7 @@ namespace Beacon
                 if ((x + 1).ToString() == key.ToString())
                 {
                     ApplicationState.SetupClientState.BlueprintName = blueprints[x];
-                    return new EndNode();
+                    return new EndNodeMode();
                 }   
             }
 

@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class CloneClientMode : PickClientMode
     {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using Beacon.Screens;
+using Beacon.Services;
 
 namespace Beacon
 {

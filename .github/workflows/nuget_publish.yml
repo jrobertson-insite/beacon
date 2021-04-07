@@ -1,0 +1,20 @@
+name: Publish Beacon
+on:
+  push:
+    branches: [ master ]
+jobs:
+  publish-nuget:
+    runs-on: ubuntu-latest
+    name: publish nuget
+    needs: test
+    steps:
+      -  
+        uses: actions/checkout@v2
+      -  
+        name: publish on version change
+        id: publish_nuget
+        uses: rohith/publish-nuget@v2
+        with:
+          PROJECT_FILE_PATH: Beacon/Beacon.csproj
+          TAG_FORMAT: "*"
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}

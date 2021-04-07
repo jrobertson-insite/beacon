@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TeamCitySharp;
 
-namespace Beacon
+namespace Beacon.Services
 {
     public class ClientProjectLoader
     {
@@ -42,8 +42,7 @@ namespace Beacon
         private static IDictionary<string, ClientProject> GetProjectsFromTeamcity()
         {
             var client = new TeamCityClient("ISHQ-BUILDSERVER.insitesofthosting.com:8111");
-            // TODO have user enter their info? grab from stonemason instead through an API? 
-            
+            client.ConnectAsGuest();
 
             var clientProjects = new Dictionary<string, ClientProject>();
 
@@ -96,7 +95,7 @@ namespace Beacon
                 {
                     foreach (var buildConfig in client.BuildConfigs.ByProjectId(project.Id))
                     {
-                        var fullBuildConfig = client.BuildConfigs.ByConfigurationId(buildConfig.Id);
+                        var fullBuildConfig = client.BuildConfigs.ByConfigurationId(buildConfig.Id); 
                         var projectName = fullBuildConfig.Parameters.Property.FirstOrDefault(o => o.Name.EqualsIgnoreCase("projectName"))?.Value;
                         var vcsRoot = client.VcsRoots.ById(fullBuildConfig.VcsRootEntries.VcsRootEntry.First().VcsRoot.Id);
                         var gitUrl = vcsRoot.Properties.Property.FirstOrDefault(o => o.Name.EqualsIgnoreCase("url"))?.Value;

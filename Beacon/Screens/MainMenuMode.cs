@@ -1,7 +1,6 @@
 using System;
-using System.Linq;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class MainMenuMode : ConsoleMode
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public abstract class SetupClientConsoleMode : ConsoleMode
     {

@@ -1,10 +1,9 @@
 using System;
-using System.Diagnostics;
 using System.Threading;
 
-namespace Beacon
+namespace Beacon.Screens
 {
-    public class EndNode : SetupClientConsoleMode
+    public class EndNodeMode : SetupClientConsoleMode
     {
         public override ConsoleMode DoWork()
         {

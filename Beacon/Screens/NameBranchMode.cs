@@ -1,7 +1,6 @@
 using System;
-using System.Threading;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class NameBranchMode : ConsoleMode
     {

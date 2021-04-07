@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Beacon
+namespace Beacon.Screens
 {
     public class ClientsViewMode : ConsoleMode
     {
@@ -16,7 +16,7 @@ namespace Beacon
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Enter)
             {
-                return this.OnEnterKey(clientProjects[HighlightedRow]);
+                return this.OnEnterKey(clientProjects[HighlightedRow + StartRow]);
             }
             if (key.Key == ConsoleKey.UpArrow)
             {
