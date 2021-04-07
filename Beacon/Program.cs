@@ -72,7 +72,6 @@ namespace Beacon
         private static void WriteBeaconImage()
         {
             Console.Clear();
-            Console.SetWindowSize(120, Console.WindowHeight);
             Console.WriteLine(@"                                                                                                      
                                                                                                       
                                                                                                       
