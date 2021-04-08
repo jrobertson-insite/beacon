@@ -6,14 +6,27 @@ namespace Beacon
 {
     public class SystemHelper
     {
-        public static ExecuteResult ExecuteApplication(string pathToExe, string arguments, string workingDirectory = null, bool quiet = false)
+        public static ExecuteResult ExecuteApplication(
+            string pathToExe,
+            string arguments,
+            string workingDirectory = null,
+            bool quiet = false)
         {
-            if ((pathToExe.Contains("/") || pathToExe.Contains("\\")) && !File.Exists(pathToExe))
+            if (
+                (pathToExe.Contains("/")
+                || pathToExe.Contains("\\"))
+                && !File.Exists(pathToExe)
+            )
             {
-                throw new ArgumentException("There was no application found at " + pathToExe);
+                throw new ArgumentException(
+                    "There was no application found at " + pathToExe
+                );
             }
 
-            var processStartInfo = new ProcessStartInfo(pathToExe, arguments)
+            var processStartInfo = new ProcessStartInfo(
+                pathToExe,
+                arguments
+            )
             {
                 CreateNoWindow = true,
                 UseShellExecute = false,
@@ -29,35 +42,43 @@ namespace Beacon
             }
 
             var output = string.Empty;
-            using var process = new Process { EnableRaisingEvents = true, StartInfo = processStartInfo };
+            using var process = new Process
+            {
+                EnableRaisingEvents = true,
+                StartInfo = processStartInfo
+            };
 
-            process.OutputDataReceived += delegate(object sender, DataReceivedEventArgs args)
+            process.OutputDataReceived += delegate(
+                object sender,
+                DataReceivedEventArgs args)
             {
                 if (args != null)
                 {
                     output += args.Data + "\r\n";
                     if (!quiet)
                     {
-                        Console.WriteLine(args.Data);   
+                        Console.WriteLine(args.Data);
                     }
                 }
             };
 
-            process.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs args)
+            process.ErrorDataReceived += delegate(
+                object sender,
+                DataReceivedEventArgs args)
             {
                 if (args != null)
                 {
                     output += args.Data + "\r\n";
                     if (!quiet)
                     {
-                        Console.WriteLine(args.Data);   
+                        Console.WriteLine(args.Data);
                     }
                 }
             };
 
             if (!quiet)
             {
-                Console.WriteLine("Executing [{0} {1}]", pathToExe, arguments);   
+                Console.WriteLine("Executing [{0} {1}]", pathToExe, arguments);
             }
 
             process.Start();

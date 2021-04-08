@@ -21,20 +21,25 @@ namespace Beacon
         public static void PickClient(ClientProject clientProject)
         {
             SetupClientState.ClientProject = clientProject;
-            var thread = new Thread(() =>
-            {
-                var message = GitHelper.CloneOrPull(clientProject.GetLocalPath(), clientProject.GitUrl);
-                if (message == null)
+            var thread = new Thread(
+                () =>
                 {
-                    SetupClientState.RepositoryReady = true;   
+                    var message = GitHelper.CloneOrPull(
+                        clientProject.GetLocalPath(),
+                        clientProject.GitUrl
+                    );
+                    if (message == null)
+                    {
+                        SetupClientState.RepositoryReady = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine(message);
+                        SetupClientState.CloneRepositoryFailed = true;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine();
-                    Console.WriteLine(message);
-                    SetupClientState.CloneRepositoryFailed = true;
-                }
-            });
+            );
             thread.Start();
         }
     }
@@ -58,7 +63,7 @@ namespace Beacon
                 return result;
             }
             result += " - " + this.ClientProject.Name;
-            
+
             if (this.ClientBranch == null)
             {
                 return result;
@@ -70,7 +75,7 @@ namespace Beacon
                 return result;
             }
             result += " - " + this.Version;
-            
+
             if (this.BranchName == null)
             {
                 return result;
@@ -83,7 +88,7 @@ namespace Beacon
             }
 
             result += " - " + BlueprintName;
-            
+
             return result;
         }
     }

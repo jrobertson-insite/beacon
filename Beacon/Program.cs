@@ -11,8 +11,8 @@ namespace Beacon
         static void Main()
         {
             VersionChecker.CheckForNewVersion();
+
             WriteBeaconImage();
-            Console.WriteLine();
             var thread = new Thread(LoadClientProjects);
             thread.Start();
             while (ApplicationState.ClientProjects == null)
@@ -21,24 +21,7 @@ namespace Beacon
                 WriteInitializing();
             }
 
-            ConsoleMode currentMode = new MainMenuMode();
-            currentMode.OnEntered();
-
-            while (true)
-            {
-                if (currentMode == null)
-                {
-                    break;
-                }
-                
-                var nextState = currentMode.DoWork();
-                if (currentMode != nextState)
-                {
-                    nextState = nextState?.ReplaceStateIfNeeded();
-                    nextState?.OnEntered();
-                    currentMode = nextState;
-                }
-            }
+            new App().Run();
         }
 
         private static void LoadClientProjects()
@@ -47,7 +30,7 @@ namespace Beacon
         }
 
         private static int count = 0;
-        
+
         private static void WriteInitializing()
         {
             Console.SetCursorPosition(0, 25);
@@ -58,13 +41,13 @@ namespace Beacon
                 result += ".";
                 x++;
             }
-            
+
             while (x < 10)
             {
                 result += "  ";
-                x++; 
+                x++;
             }
-            
+
             count++;
             Console.WriteLine(result);
         }
@@ -72,7 +55,8 @@ namespace Beacon
         private static void WriteBeaconImage()
         {
             Console.Clear();
-            Console.WriteLine(@"                                                                                                      
+            Console.WriteLine(
+                @"                                                                                                      
                                                                                                       
                                                                                                       
           _______                                                                                     
@@ -95,7 +79,8 @@ namespace Beacon
 ##################################))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 #########################################)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 ##########################################################))))))))))))))))))))))))))))))))))))))))))))
-#############################################################################################)))))))))");
+#############################################################################################)))))))))"
+            );
         }
     }
 

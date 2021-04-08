@@ -15,16 +15,25 @@ namespace Beacon.Screens
 
             if (key.Key == ConsoleKey.Enter)
             {
-                SystemHelper.ExecuteApplication("git", $"-C {ApplicationState.CommerceRepo} reset --hard");
+                SystemHelper.ExecuteApplication(
+                    "git",
+                    $"-C {ApplicationState.CommerceRepo} reset --hard"
+                );
 
                 void CleanStuff(string path)
                 {
-                    foreach (var directory in Directory.GetDirectories(Path.Combine(ApplicationState.CommerceRepo, path)))
+                    foreach (var directory in Directory.GetDirectories(
+                        Path.Combine(ApplicationState.CommerceRepo, path)
+                    ))
                     {
                         var directoryInfo = new DirectoryInfo(directory);
-                        if (directoryInfo.Name.EqualsIgnoreCase("example") 
-                            || directoryInfo.Name.EqualsIgnoreCase("buildBreaker")
-                            || directoryInfo.Name.EqualsIgnoreCase("gsd"))
+                        if (
+                            directoryInfo.Name.EqualsIgnoreCase("example")
+                            || directoryInfo.Name.EqualsIgnoreCase(
+                                "buildBreaker"
+                            )
+                            || directoryInfo.Name.EqualsIgnoreCase("gsd")
+                        )
                         {
                             continue;
                         }
@@ -32,9 +41,11 @@ namespace Beacon.Screens
                         directoryInfo.Delete(true);
                     }
                 }
-                
+
                 // TODO show git status before doing this?
-                Console.WriteLine("Cleaning up any leftover empty directories.");
+                Console.WriteLine(
+                    "Cleaning up any leftover empty directories."
+                );
                 CleanStuff(@"FrontEnd\Modules\blueprints");
                 CleanStuff(@"FrontEnd\Modules\blueprints-shell");
                 Console.WriteLine("Done. Press any key.");
@@ -48,8 +59,12 @@ namespace Beacon.Screens
         public override void OnEntered()
         {
             ClearAndPrint("Clean Commerce:");
-            Print("  This will git reset --hard and delete any remaining empty theme/blueprint folders.");
-            Print("  Press enter to continue or backspace to change your mind.");
+            Print(
+                "  This will git reset --hard and delete any remaining empty theme/blueprint folders."
+            );
+            Print(
+                "  Press enter to continue or backspace to change your mind."
+            );
         }
     }
 }

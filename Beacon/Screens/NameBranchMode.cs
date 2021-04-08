@@ -16,7 +16,10 @@ namespace Beacon.Screens
             Print(ApplicationState.SetupClientState.GetHeader());
             Console.WriteLine();
             Print("Checking out version");
-            var message = GitHelper.CheckoutBranch(ApplicationState.CommerceRepo, $"{ApplicationState.SetupClientState.Version} -b {line}");
+            var message = GitHelper.CheckoutBranch(
+                ApplicationState.CommerceRepo,
+                $"{ApplicationState.SetupClientState.Version} -b {line}"
+            );
             if (message != null)
             {
                 Console.WriteLine(message);
@@ -34,8 +37,12 @@ namespace Beacon.Screens
             Console.Clear();
             var clientProject = ApplicationState.SetupClientState.ClientProject;
             var version = ApplicationState.SetupClientState.Version;
-            Print(ApplicationState.SetupClientState.GetHeader() + " - Name Branch");
-            Print($"What should we name the branch? (Press enter for '{clientProject.Name}-{version}')");
+            Print(
+                ApplicationState.SetupClientState.GetHeader() + " - Name Branch"
+            );
+            Print(
+                $"What should we name the branch? (Press enter for '{clientProject.Name}-{version}')"
+            );
         }
     }
 }

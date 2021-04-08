@@ -16,6 +16,7 @@
     <ItemGroup>
       <PackageReference Include="Alba.CsConsoleFormat" Version="1.0.0" />
       <PackageReference Include="TeamCitySharp-forked-mavezeau" Version="2.0.13" />
+      <PackageReference Include="Terminal.Gui" Version="1.0.0-beta.11" />
       <PackageReference Include="YamlDotNet" Version="9.1.4" />
     </ItemGroup>
 

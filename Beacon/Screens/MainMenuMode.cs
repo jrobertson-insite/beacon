@@ -7,7 +7,6 @@ namespace Beacon.Screens
         public override ConsoleMode DoWork()
         {
             var key = Console.ReadKey(true).KeyChar;
-
             switch (key)
             {
                 case '1':
@@ -30,7 +29,9 @@ namespace Beacon.Screens
         public override void OnEntered()
         {
             ClearAndPrint("Main Menu:");
-            Print("  1. setup client - Get a client repo, branch your local repo to a specific version, load their blueprint/themes/extensions");
+            Print(
+                "  1. setup client - Get a client repo, branch your local repo to a specific version, load their blueprint/themes/extensions"
+            );
             Print("  2. clone client - Get a client repo");
             Print("  3. clean commerce - clean up after #1");
             Print("  4. exit");

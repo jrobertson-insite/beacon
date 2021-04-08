@@ -9,7 +9,7 @@ namespace Beacon.Screens
         protected override void PrintHeader()
         {
             Print(this.GetHeader());
-            
+
             base.PrintHeader();
         }
 
@@ -17,7 +17,7 @@ namespace Beacon.Screens
         {
             return ApplicationState.SetupClientState.GetHeader() + " - Select Client";
         }
-        
+
         protected override int GetRows()
         {
             return base.GetRows() - 1;
@@ -30,7 +30,9 @@ namespace Beacon.Screens
             Print(ApplicationState.SetupClientState.GetHeader());
             Console.WriteLine();
             Print("Cloning repo if needed");
-            while (!ApplicationState.SetupClientState.RepositoryReady && !ApplicationState.SetupClientState.CloneRepositoryFailed)
+            while (
+                !ApplicationState.SetupClientState.RepositoryReady
+                && !ApplicationState.SetupClientState.CloneRepositoryFailed)
             {
                 Console.Write(".");
                 Thread.Sleep(100);
@@ -38,7 +40,7 @@ namespace Beacon.Screens
 
             if (ApplicationState.SetupClientState.RepositoryReady)
             {
-                return new PickEnvironmentMode();   
+                return new PickEnvironmentMode();
             }
             else
             {
@@ -59,7 +61,9 @@ namespace Beacon.Screens
             if (!Directory.Exists(ApplicationState.CommerceRepo))
             {
                 Console.Clear();
-                Console.WriteLine("Your commerce repo needs to be at " + ApplicationState.CommerceRepo);
+                Console.WriteLine(
+                    "Your commerce repo needs to be at " + ApplicationState.CommerceRepo
+                );
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey(true);
                 return new MainMenuMode();
@@ -68,7 +72,9 @@ namespace Beacon.Screens
             if (!GitHelper.IsClean(ApplicationState.CommerceRepo))
             {
                 Console.Clear();
-                Console.WriteLine("Your commerce repo is not clean. Please stash/commit any changes or use the main menu option to clean it.");
+                Console.WriteLine(
+                    "Your commerce repo is not clean. Please stash/commit any changes or use the main menu option to clean it."
+                );
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey(true);
                 return new MainMenuMode();
