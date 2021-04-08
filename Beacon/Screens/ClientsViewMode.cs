@@ -9,14 +9,17 @@ namespace Beacon.Screens
         protected int StartRow { get; set; } = 0;
         protected int HighlightedRow { get; set; } = 0;
         protected string Search { get; set; } = "";
-        protected IList<ClientProject> clientProjects = ApplicationState.GetSortedClientProjects().ToList();
+        protected IList<ClientProject> clientProjects = ApplicationState.GetSortedClientProjects()
+            .ToList();
 
         public override ConsoleMode DoWork()
         {
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Enter)
             {
-                return this.OnEnterKey(clientProjects[HighlightedRow + StartRow]);
+                return this.OnEnterKey(
+                    clientProjects[HighlightedRow + StartRow]
+                );
             }
             if (key.Key == ConsoleKey.UpArrow)
             {
@@ -31,9 +34,11 @@ namespace Beacon.Screens
 
             if (key.Key == ConsoleKey.DownArrow)
             {
-                if ((StartRow == clientProjects.Count - GetRows() 
+                if (
+                    (StartRow == clientProjects.Count - GetRows()
                     && HighlightedRow == GetRows() - 1)
-                    || HighlightedRow == clientProjects.Count - 1)
+                    || HighlightedRow == clientProjects.Count - 1
+                )
                 {
                     return this;
                 }
@@ -42,7 +47,11 @@ namespace Beacon.Screens
                 return this;
             }
 
-            if (key.Key == ConsoleKey.Backspace || char.IsLetter(key.KeyChar) || char.IsNumber(key.KeyChar))
+            if (
+                key.Key == ConsoleKey.Backspace
+                || char.IsLetter(key.KeyChar)
+                || char.IsNumber(key.KeyChar)
+            )
             {
                 StartRow = 0;
                 HighlightedRow = 0;
@@ -86,9 +95,15 @@ namespace Beacon.Screens
             Print(Pad(" Name", 25) + "|" + Pad(" Git Repository", 85));
         }
 
-        protected virtual void PrintClient(ClientProject clientProject, bool highlight = false)
+        protected virtual void PrintClient(
+            ClientProject clientProject,
+            bool highlight = false)
         {
-            var line = Pad(" " + clientProject.Name, 25) + "|" + " " + Pad(clientProject.GitUrl, 85);
+            var line =
+                Pad(" " + clientProject.Name, 25) + "|" + " " + Pad(
+                    clientProject.GitUrl,
+                    85
+                );
             if (highlight)
             {
                 Print(line, ConsoleColor.White, ConsoleColor.DarkBlue);
@@ -98,23 +113,30 @@ namespace Beacon.Screens
                 Print(line);
             }
         }
-        
+
         private void PrintClientTable()
         {
             Console.Clear();
             PrintHeader();
-            
+
             if (!Search.IsBlank())
             {
-                clientProjects = ApplicationState.GetSortedClientProjects().Where(o => o.Name.ContainsIgnoreCase(Search) || o.GitUrl.ContainsIgnoreCase(Search)).ToList();
+                clientProjects = ApplicationState.GetSortedClientProjects()
+                    .Where(
+                        o => o.Name.ContainsIgnoreCase(Search)
+                        || o.GitUrl.ContainsIgnoreCase(Search)
+                    )
+                    .ToList();
             }
             else
             {
-                clientProjects = ApplicationState.GetSortedClientProjects().ToList();
+                clientProjects = ApplicationState.GetSortedClientProjects()
+                    .ToList();
             }
 
             var x = 0;
-            foreach (var clientProject in clientProjects.Skip(StartRow).Take(GetRows()))
+            foreach (var clientProject in clientProjects.Skip(StartRow)
+                .Take(GetRows()))
             {
                 PrintClient(clientProject, x == HighlightedRow);
                 x++;
@@ -126,11 +148,11 @@ namespace Beacon.Screens
                 x++;
             }
         }
-        
+
         private void MoveClientTable(bool up)
         {
             var originalTop = Console.CursorTop;
-            
+
             var top = Console.CursorTop - GetRows();
 
             if (up)
@@ -140,9 +162,17 @@ namespace Beacon.Screens
                 if (HighlightedRow == 0)
                 {
                     StartRow -= 1;
-                    Console.MoveBufferArea(0, top, 120, GetRows() - 1, 0, top + 1);
+                    Console.MoveBufferArea(
+                        0,
+                        top,
+                        120,
+                        GetRows() - 1,
+                        0,
+                        top + 1
+                    );
                     Console.SetCursorPosition(0, top);
-                    clientProject = clientProjects.Skip(StartRow).FirstOrDefault();
+                    clientProject = clientProjects.Skip(StartRow)
+                        .FirstOrDefault();
                     PrintClient(clientProject);
                     moveRow = false;
                 }
@@ -164,7 +194,14 @@ namespace Beacon.Screens
                 if (HighlightedRow == GetRows() - 1)
                 {
                     StartRow += 1;
-                    Console.MoveBufferArea(0, top + 1, 120, GetRows() - 1, 0, top);
+                    Console.MoveBufferArea(
+                        0,
+                        top + 1,
+                        120,
+                        GetRows() - 1,
+                        0,
+                        top
+                    );
                     Console.SetCursorPosition(0, originalTop);
                     moveRow = false;
                 }
@@ -175,15 +212,16 @@ namespace Beacon.Screens
                 }
 
                 Console.SetCursorPosition(0, top + HighlightedRow - 1);
-                var clientProject = clientProjects[StartRow + HighlightedRow - 1];
+                var clientProject =
+                    clientProjects[StartRow + HighlightedRow - 1];
                 PrintClient(clientProject);
                 clientProject = clientProjects[StartRow + HighlightedRow];
-                PrintClient(clientProject, true);   
+                PrintClient(clientProject, true);
             }
-            
+
             Console.SetCursorPosition(0, originalTop);
         }
-        
+
         protected virtual int GetRows()
         {
             return Console.WindowHeight - 2;

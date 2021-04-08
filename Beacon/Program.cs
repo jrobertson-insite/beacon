@@ -30,7 +30,7 @@ namespace Beacon
                 {
                     break;
                 }
-                
+
                 var nextState = currentMode.DoWork();
                 if (currentMode != nextState)
                 {
@@ -47,7 +47,7 @@ namespace Beacon
         }
 
         private static int count = 0;
-        
+
         private static void WriteInitializing()
         {
             Console.SetCursorPosition(0, 25);
@@ -58,13 +58,13 @@ namespace Beacon
                 result += ".";
                 x++;
             }
-            
+
             while (x < 10)
             {
                 result += "  ";
-                x++; 
+                x++;
             }
-            
+
             count++;
             Console.WriteLine(result);
         }
@@ -72,7 +72,8 @@ namespace Beacon
         private static void WriteBeaconImage()
         {
             Console.Clear();
-            Console.WriteLine(@"                                                                                                      
+            Console.WriteLine(
+                @"                                                                                                      
                                                                                                       
                                                                                                       
           _______                                                                                     
@@ -95,7 +96,8 @@ namespace Beacon
 ##################################))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 #########################################)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 ##########################################################))))))))))))))))))))))))))))))))))))))))))))
-#############################################################################################)))))))))");
+#############################################################################################)))))))))"
+            );
         }
     }
 

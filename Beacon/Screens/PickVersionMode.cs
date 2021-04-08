@@ -18,7 +18,9 @@ namespace Beacon.Screens
             }
             if (!GitHelper.TagExists(ApplicationState.CommerceRepo, version))
             {
-                Console.WriteLine($"The version {version} does not have a tag.");
+                Console.WriteLine(
+                    $"The version {version} does not have a tag."
+                );
             }
             else
             {
@@ -31,11 +33,22 @@ namespace Beacon.Screens
 
         public override void OnEntered()
         {
-            var versionYaml = Path.Combine(this.ClientProject.GetLocalPath(), "versionInfo.yaml");
-            var deserializer = new DeserializerBuilder().WithNamingConvention(UnderscoredNamingConvention.Instance).Build();
-            var versionInfo = deserializer.Deserialize<VersionInfo>(File.ReadAllText(versionYaml));
+            var versionYaml = Path.Combine(
+                this.ClientProject.GetLocalPath(),
+                "versionInfo.yaml"
+            );
+            var deserializer = new DeserializerBuilder().WithNamingConvention(
+                    UnderscoredNamingConvention.Instance
+                )
+                .Build();
+            var versionInfo = deserializer.Deserialize<VersionInfo>(
+                File.ReadAllText(versionYaml)
+            );
             this.defaultVersion = versionInfo.CommerceVersion;
-            this.PrintOnEntered("Select Version", $"Which version do you want to use? (Press enter for {this.defaultVersion})");
+            this.PrintOnEntered(
+                "Select Version",
+                $"Which version do you want to use? (Press enter for {this.defaultVersion})"
+            );
         }
 
         private class VersionInfo

@@ -15,16 +15,21 @@ namespace Beacon.Screens
         {
             return base.GetRows() - 1;
         }
-        
+
         protected override ConsoleMode OnEnterKey(ClientProject clientProject)
         {
             Console.Clear();
             var done = false;
-            Task.Factory.StartNew(() =>
-            {
-                GitHelper.CloneOrPull(clientProject.GetLocalPath(), clientProject.GitUrl);
-                done = true;
-            });
+            Task.Factory.StartNew(
+                () =>
+                {
+                    GitHelper.CloneOrPull(
+                        clientProject.GetLocalPath(),
+                        clientProject.GitUrl
+                    );
+                    done = true;
+                }
+            );
             Console.WriteLine();
             Print("Cloning repo if needed");
             while (!done)
@@ -32,7 +37,7 @@ namespace Beacon.Screens
                 Console.Write(".");
                 Thread.Sleep(100);
             }
-            
+
             Print("Cloned to " + clientProject.GetLocalPath());
             Print("Press any key to continue.");
             Console.ReadKey(true);

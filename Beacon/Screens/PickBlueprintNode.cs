@@ -8,7 +8,7 @@ namespace Beacon.Screens
     public class PickBlueprintNode : ConsoleMode
     {
         private IList<string> blueprints = new List<string>();
-        
+
         public override ConsoleMode DoWork()
         {
             if (!ApplicationState.SetupClientState.ClientProject.HasSpire)
@@ -21,9 +21,11 @@ namespace Beacon.Screens
             {
                 if ((x + 1).ToString() == key.ToString())
                 {
-                    ApplicationState.SetupClientState.BlueprintName = blueprints[x];
+                    ApplicationState.SetupClientState.BlueprintName = blueprints[
+                        x
+                    ];
                     return new EndNodeMode();
-                }   
+                }
             }
 
             return this;
@@ -34,9 +36,16 @@ namespace Beacon.Screens
             if (ApplicationState.SetupClientState.ClientProject.HasSpire)
             {
                 Console.Clear();
-                Print(ApplicationState.SetupClientState.GetHeader() + " - Select Blueprint");
-                var blueprintsPath = Path.Combine(ApplicationState.SetupClientState.ClientProject.GetLocalPath(), @"src\FrontEnd\modules\blueprints");
-                foreach (var directory in Directory.GetDirectories(blueprintsPath))
+                Print(
+                    ApplicationState.SetupClientState.GetHeader() + " - Select Blueprint"
+                );
+                var blueprintsPath = Path.Combine(
+                    ApplicationState.SetupClientState.ClientProject.GetLocalPath(),
+                    @"src\FrontEnd\modules\blueprints"
+                );
+                foreach (var directory in Directory.GetDirectories(
+                    blueprintsPath
+                ))
                 {
                     var directoryInfo = new DirectoryInfo(directory);
                     blueprints.Add(directoryInfo.Name);
@@ -46,7 +55,7 @@ namespace Beacon.Screens
                     Console.WriteLine($"  {(x + 1)}. {blueprints[x]}");
                 }
             }
-            
+
             var thread = new Thread(ProjectHelper.DoStuff);
             thread.Start();
         }
