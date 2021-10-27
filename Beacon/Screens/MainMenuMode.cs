@@ -10,9 +10,9 @@ namespace Beacon.Screens
             switch (key)
             {
                 case '1':
-                    return new PickClientMode();
-                case '2':
                     return new CloneClientMode();
+                case '2':
+                    return new PickClientMode();
                 case '3':
                     return new CleanCommerceMode();
                 case '4':
@@ -29,11 +29,11 @@ namespace Beacon.Screens
         public override void OnEntered()
         {
             ClearAndPrint("Main Menu:");
+            Print("  1. clone client - Get a client repo");
             Print(
-                "  1. setup client - Get a client repo, branch your local repo to a specific version, load their blueprint/themes/extensions"
+                "  2. setup client - Get a client repo, branch your local repo to a specific version, load their blueprint/themes/extensions"
             );
-            Print("  2. clone client - Get a client repo");
-            Print("  3. clean commerce - clean up after #1");
+            Print("  3. clean commerce - clean up after #2");
             Print("  4. exit");
         }
     }

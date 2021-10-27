@@ -32,7 +32,8 @@ namespace Beacon.Screens
             Print("Cloning repo if needed");
             while (
                 !ApplicationState.SetupClientState.RepositoryReady
-                && !ApplicationState.SetupClientState.CloneRepositoryFailed)
+                && !ApplicationState.SetupClientState.CloneRepositoryFailed
+            )
             {
                 Console.Write(".");
                 Thread.Sleep(100);

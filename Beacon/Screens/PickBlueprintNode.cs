@@ -21,9 +21,7 @@ namespace Beacon.Screens
             {
                 if ((x + 1).ToString() == key.ToString())
                 {
-                    ApplicationState.SetupClientState.BlueprintName = blueprints[
-                        x
-                    ];
+                    ApplicationState.SetupClientState.BlueprintName = blueprints[x];
                     return new EndNodeMode();
                 }
             }
@@ -36,16 +34,12 @@ namespace Beacon.Screens
             if (ApplicationState.SetupClientState.ClientProject.HasSpire)
             {
                 Console.Clear();
-                Print(
-                    ApplicationState.SetupClientState.GetHeader() + " - Select Blueprint"
-                );
+                Print(ApplicationState.SetupClientState.GetHeader() + " - Select Blueprint");
                 var blueprintsPath = Path.Combine(
                     ApplicationState.SetupClientState.ClientProject.GetLocalPath(),
                     @"src\FrontEnd\modules\blueprints"
                 );
-                foreach (var directory in Directory.GetDirectories(
-                    blueprintsPath
-                ))
+                foreach (var directory in Directory.GetDirectories(blueprintsPath))
                 {
                     var directoryInfo = new DirectoryInfo(directory);
                     blueprints.Add(directoryInfo.Name);

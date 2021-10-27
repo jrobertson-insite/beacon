@@ -23,10 +23,7 @@ namespace Beacon.Screens
             Task.Factory.StartNew(
                 () =>
                 {
-                    GitHelper.CloneOrPull(
-                        clientProject.GetLocalPath(),
-                        clientProject.GitUrl
-                    );
+                    GitHelper.CloneOrPull(clientProject.GetLocalPath(), clientProject.GitUrl);
                     done = true;
                 }
             );

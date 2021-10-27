@@ -2,6 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beacon", "Beacon\Beacon.csproj", "{F8913491-8F60-4288-8A94-82704DFBF1BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beacon.Tests", "Beacon.Tests\Beacon.Tests.csproj", "{76EB6FE6-06F1-4764-981E-65B2A163DDE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{E872EC79-6F33-4A1B-A3FA-14E27DDEE635}"
+ProjectSection(SolutionItems) = preProject
+	.config\dotnet-tools.json = .config\dotnet-tools.json
+	.github\workflows\nuget_publish.yml = .github\workflows\nuget_publish.yml
+	.gitignore = .gitignore
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +21,9 @@ Global
 		{F8913491-8F60-4288-8A94-82704DFBF1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8913491-8F60-4288-8A94-82704DFBF1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8913491-8F60-4288-8A94-82704DFBF1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76EB6FE6-06F1-4764-981E-65B2A163DDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76EB6FE6-06F1-4764-981E-65B2A163DDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76EB6FE6-06F1-4764-981E-65B2A163DDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76EB6FE6-06F1-4764-981E-65B2A163DDE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

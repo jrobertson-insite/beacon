@@ -7,7 +7,7 @@
         <AssemblyName>dotnet-beacon</AssemblyName>
         <RootNamespace>Beacon</RootNamespace>
         <PackAsTool>true</PackAsTool>
-        <Version>0.5.7</Version>
+        <Version>0.5.9</Version>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/InsiteSoftware/beacon</RepositoryUrl>
         <RepositoryType>git</RepositoryType>

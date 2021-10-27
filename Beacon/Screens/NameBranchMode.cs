@@ -9,7 +9,10 @@ namespace Beacon.Screens
             var line = Console.ReadLine();
             if (line.IsBlank())
             {
-                line = ApplicationState.SetupClientState.ClientProject.Name + "-" + ApplicationState.SetupClientState.Version;
+                line =
+                    ApplicationState.SetupClientState.ClientProject.Name
+                    + "-"
+                    + ApplicationState.SetupClientState.Version;
             }
             ApplicationState.SetupClientState.BranchName = line;
             Console.Clear();
@@ -37,9 +40,7 @@ namespace Beacon.Screens
             Console.Clear();
             var clientProject = ApplicationState.SetupClientState.ClientProject;
             var version = ApplicationState.SetupClientState.Version;
-            Print(
-                ApplicationState.SetupClientState.GetHeader() + " - Name Branch"
-            );
+            Print(ApplicationState.SetupClientState.GetHeader() + " - Name Branch");
             Print(
                 $"What should we name the branch? (Press enter for '{clientProject.Name}-{version}')"
             );

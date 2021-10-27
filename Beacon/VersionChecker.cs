@@ -18,8 +18,7 @@ namespace Beacon
                 response.Content.ReadAsStringAsync().Result
             );
             var latestVersion = new Version(result.Items[0].Upper);
-            var currentVersion =
-                typeof(VersionChecker).Assembly.GetName().Version;
+            var currentVersion = typeof(VersionChecker).Assembly.GetName().Version;
             if (latestVersion.CompareTo(currentVersion) > 0)
             {
                 Console.WriteLine(

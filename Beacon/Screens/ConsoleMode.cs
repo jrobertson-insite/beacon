@@ -8,9 +8,7 @@ namespace Beacon.Screens
         public abstract ConsoleMode DoWork();
         public abstract void OnEntered();
 
-        protected static void ClearAndPrint(
-            string text,
-            ConsoleColor color = ConsoleColor.White)
+        protected static void ClearAndPrint(string text, ConsoleColor color = ConsoleColor.White)
         {
             Console.Clear();
             Console.WriteLine(
@@ -27,7 +25,8 @@ namespace Beacon.Screens
         protected static void Print(
             string text,
             ConsoleColor color = ConsoleColor.White,
-            ConsoleColor? bgColor = null)
+            ConsoleColor? bgColor = null
+        )
         {
             var span = new Span(text) { Color = color };
             if (bgColor.HasValue)

@@ -111,7 +111,12 @@ namespace Beacon
 
         public string GetLocalPath()
         {
-            return Path.Combine(@"c:\Projects\Clients", this.Name);
+            return Path.Combine(LocalProjectPath(), "Clients", this.Name);
+        }
+
+        public static string LocalProjectPath()
+        {
+            return @"c:\Projects";
         }
     }
 }

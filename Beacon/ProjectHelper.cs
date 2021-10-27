@@ -14,8 +14,7 @@ namespace Beacon
         {
             var clientProject = ApplicationState.SetupClientState.ClientProject;
             var clientPath = ApplicationState.SetupClientState.ClientProject.GetLocalPath();
-            var clientName =
-                ApplicationState.SetupClientState.ClientProject.Name;
+            var clientName = ApplicationState.SetupClientState.ClientProject.Name;
             var commercePath = ApplicationState.CommerceRepo;
 
             var tasks = new List<Task>();
@@ -57,11 +56,9 @@ namespace Beacon
                                 FileName = "npm",
                                 UseShellExecute = true,
                                 WindowStyle = ProcessWindowStyle.Normal,
-                                Arguments = $"run start {ApplicationState.SetupClientState.BlueprintName}",
-                                WorkingDirectory = Path.Combine(
-                                    commercePath,
-                                    @"FrontEnd"
-                                )
+                                Arguments =
+                                    $"run start {ApplicationState.SetupClientState.BlueprintName}",
+                                WorkingDirectory = Path.Combine(commercePath, @"FrontEnd")
                             }
                         );
                     }
@@ -85,10 +82,7 @@ namespace Beacon
     </Reference>
   </ItemGroup>"
                 );
-                File.WriteAllText(
-                    webCsProj,
-                    string.Join(Environment.NewLine, text)
-                );
+                File.WriteAllText(webCsProj, string.Join(Environment.NewLine, text));
 
                 if (!clientProject.HasSpire)
                 {
@@ -98,7 +92,7 @@ namespace Beacon
                         null,
                         true
                     );
-                // TODO grunt build themes
+                    // TODO grunt build themes
                 }
 
                 // TODO where do I find this?
@@ -110,8 +104,8 @@ namespace Beacon
                 );
                 if (result.ExitCode != 0)
                 {
-                // TODO what now!
-                // property for SetupFailure with a message?
+                    // TODO what now!
+                    // property for SetupFailure with a message?
                 }
             }
 

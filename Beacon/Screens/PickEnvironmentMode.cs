@@ -4,8 +4,7 @@ namespace Beacon.Screens
 {
     public class PickEnvironmentMode : ConsoleMode
     {
-        private ClientProject clientProject =>
-            ApplicationState.SetupClientState.ClientProject;
+        private ClientProject clientProject => ApplicationState.SetupClientState.ClientProject;
 
         public override ConsoleMode DoWork()
         {
@@ -34,10 +33,7 @@ namespace Beacon.Screens
             Print("Cloning or pulling repo");
             Console.WriteLine("Pulling any changes");
             ApplicationState.SetupClientState.ClientBranch = branch;
-            var message = GitHelper.CheckoutBranch(
-                clientProject.GetLocalPath(),
-                branch
-            );
+            var message = GitHelper.CheckoutBranch(clientProject.GetLocalPath(), branch);
             if (message == null)
             {
                 message = GitHelper.Pull(clientProject.GetLocalPath());
@@ -55,9 +51,7 @@ namespace Beacon.Screens
         public override void OnEntered()
         {
             Console.Clear();
-            Print(
-                ApplicationState.SetupClientState.GetHeader() + " - Select Environment"
-            );
+            Print(ApplicationState.SetupClientState.GetHeader() + " - Select Environment");
             if (clientProject.HasSandbox)
             {
                 Print("  1. Sandbox");
