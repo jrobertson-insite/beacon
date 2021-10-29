@@ -60,7 +60,7 @@ namespace Beacon.Services
             );
             GitHelper.CloneOrPull(
                 projectPath,
-                "https://github.com/InsiteSoftware/insite-commerce-config.git",
+                "git@github.com:InsiteSoftware/insite-commerce-config.git",
                 true
             );
 
@@ -135,7 +135,7 @@ namespace Beacon.Services
             );
             GitHelper.CloneOrPull(
                 projectPath,
-                "https://github.com/InsiteSoftware/teamcity-partner-builds.git",
+                "git@github.com:InsiteSoftware/teamcity-partner-builds.git",
                 true
             );
             GitHelper.CheckoutBranch(projectPath, "legacy", true);

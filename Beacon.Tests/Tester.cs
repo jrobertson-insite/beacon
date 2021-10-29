@@ -17,7 +17,7 @@ namespace Beacon.Tests
             );
             GitHelper.CloneOrPull(
                 projectPath,
-                "https://github.com/InsiteSoftware/teamcity-partner-builds.git"
+                "git@github.com:InsiteSoftware/teamcity-partner-builds.git"
             );
             GitHelper.CheckoutBranch(projectPath, "legacy");
 
@@ -69,4 +69,3 @@ namespace Beacon.Tests
         }
     }
 }
-
