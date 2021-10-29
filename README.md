@@ -11,4 +11,4 @@ dotnet beacon
 ```
 
 ## Important Note
-You will need to be on the ~~minneapolis~~ Episerver VPN to run beacon the first time. It uses teamcity to retrieve information that it needs.
+You will need read access to https://github.com/insitesoftware/insite-commerce-config and https://github.com/InsiteSoftware/teamcity-partner-builds to retrieve client git repo data.
